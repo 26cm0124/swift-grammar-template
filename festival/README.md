@@ -20,8 +20,7 @@
 
 
 ## 画面
-
-festival/screen1.png
+![アプリの画面](screen1.png)
 
 ## 使った文法・技術
 
