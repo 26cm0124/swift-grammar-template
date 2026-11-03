@@ -30,29 +30,37 @@ screenを保存しているうちに、save button を押せなくする
 ## 箇所2：（見出し）
 
 ```swift
-// コードを貼る
+defer {
+    isSavingResult = false
+}
 ```
 
 **何をしているか：**
+function が終了する直前に、isSavingResult を false に戻している。
 
 **なぜこう書くのか：**
+エラーが発生して途中で終了した場合でも、保存中の状態を解除できるため。
 
 **もしこう書かなかったら：**
+エラーなどで途中終了したときに、isSavingResult が true のまま残ってしまう可能性がある。
+その場合、保存ボタンが押せなくなったり、保存処理ができなくなったりする可能性がある。
 
 ---
 
 ## 箇所3：（見出し）
 
 ```swift
-// コードを貼る
+.object(forInfoDictionaryKey: "NSPhotoLibraryAddUsageDescription")
 ```
 
 **何をしているか：**
-
+Info.plist から「NSPhotoLibraryAddUsageDescription」というキーに設定されている値を取得している。
 **なぜこう書くのか：**
+写真アプリに画像を保存するために必要なプライバシー設定が登録されているか確認するため。
 
 **もしこう書かなかったら：**
-
+Info.plist に必要な設定があるか確認できなくなる。そのため、写真の保存に必要な設定が不足していても、
+事前に気づくことが難しくなる。
 ---
 
 ## 自分ではまだ説明できない箇所（正直に）
